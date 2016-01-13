@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  resources :requirements
   resources :skills
-  resources :languages
   resources :attendance_statuses
   resources :events
   resources :organizations

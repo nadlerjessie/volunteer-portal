@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class LanguageTest < ActiveSupport::TestCase
+class RequirementsControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end

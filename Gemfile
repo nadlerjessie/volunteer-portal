@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'pry'
-gem 'prybyebug'
 gem 'annotate'
 gem 'geocoder'
 
