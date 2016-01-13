@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  resources :requirements
-  resources :skills
-  resources :attendance_statuses
   resources :events
   resources :organizations
   resources :volunteers

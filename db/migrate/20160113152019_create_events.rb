@@ -6,6 +6,7 @@ class CreateEvents < ActiveRecord::Migration
       t.integer :organization_id
       t.string :description
       t.integer :volunteer_max
+      t.integer :minimum_age
       t.string :address
       t.decimal :latitude
       t.decimal :longitude
