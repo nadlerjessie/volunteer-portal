@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160113154849) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "attendance_statuses", force: :cascade do |t|
     t.integer  "event_id"
     t.integer  "volunteer_id"
@@ -69,14 +72,14 @@ ActiveRecord::Schema.define(version: 20160113154849) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.string   "bio"
+    t.text     "bio"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
   create_table "volunteers", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "birthday"
+    t.date     "birthday"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

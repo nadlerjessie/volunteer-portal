@@ -1,0 +1,51 @@
+<div class='row-fluid'>
+  <div class='span4 well'>
+    <%= form_for @user do |f| %>
+      <p>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </p>
+      <p>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+      </p>
+      <p>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </p>
+      <p>
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+      </p>
+      <p class='new-user-type-js'>
+        <%= f.label 'User Type'%>
+        <%= f.select :volunteer, [['Volunteer', 0], ['Organization', 1]], {:include_blank => "Select"}%>  
+      </p>
+
+      <div class='volunteer-form-js hide'>
+        <%= f.fields_for :volunteer do |v| %>
+          <p>
+            <%= v.label :birthday %>
+            <%= v.date_select :birthday %>
+          </p>
+
+          <p>
+            <%= v.label :skills %>
+            <%= v.text_field :skills, :size=>'100', :placeholder => 'List any relevant skills you have separated by commas. For example: Spanish, babysitting, First Aid' %>
+          </p>
+        <% end %>
+      </div>
+      <div class='organization-form-js hide'>
+        <%= f.fields_for :organization do |o| %>
+          <p>
+            <%= o.label :website, 'Website URL' %>
+            <%= o.text_field :website %>
+          </p>
+        <% end %>
+      </div>
+
+
+      <%= f.submit 'Sign Up'%>
+    <% end %>
+  </div>
+</div>
