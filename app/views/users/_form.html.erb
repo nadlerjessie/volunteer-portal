@@ -1,6 +1,16 @@
 <div class='row-fluid'>
   <div class='span4 well'>
-    <%= form_for @user do |f| %>
+    <% if @user.errors.any? %>
+      <div class="error_messages">
+        <h2>Form is invalid</h2>
+        <ul>
+          <% for message in @user.errors.full_messages %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= form_for(@user) do |f| %>
       <p>
         <%= f.label :name %>
         <%= f.text_field :name %>
@@ -17,8 +27,12 @@
         <%= f.label :password_confirmation %>
         <%= f.password_field :password_confirmation %>
       </p>
+      <p>
+        <%= f.label :bio %>
+        <%= f.text_area :bio %>
+      </p>
       <p class='new-user-type-js'>
-        <%= f.label 'User Type'%>
+        <%= f.label 'Are you a volunteer or organization?'%>
         <%= f.select :volunteer, [['Volunteer', 0], ['Organization', 1]], {:include_blank => "Select"}%>  
       </p>
 
@@ -26,14 +40,15 @@
         <%= f.fields_for :volunteer do |v| %>
           <p>
             <%= v.label :birthday %>
-            <%= v.date_select :birthday %>
+            <%= v.date_select :birthday, :start_year => Time.zone.today.year - 100, :end_year => Time.zone.today.year %>
           </p>
-
           <p>
-            <%= v.label :skills %>
-            <%= v.text_field :skills, :size=>'100', :placeholder => 'List any relevant skills you have separated by commas. For example: Spanish, babysitting, First Aid' %>
-          </p>
-        <% end %>
+          <%= v.fields_for :skills do |skill| %>
+            <%= f.label :skills %>
+            <%= skill.text_area :name, :placeholder => 'List any relevant skills you have separated by commas. For example: Spanish, babysitting, First Aid' %>
+          <% end %>
+        </p>
+      <% end %>
       </div>
       <div class='organization-form-js hide'>
         <%= f.fields_for :organization do |o| %>
